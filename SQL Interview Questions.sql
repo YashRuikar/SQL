@@ -1,51 +1,76 @@
 -- Q-1. Write na SQL query to fetch "FIRST_NAME" from worker table using the alias name as <WORKER_NAME>.
+SELECT FIRST_NAME AS WORKER_NAME FROM Worker;
 
 -- Q-2. Write an SQL query to fetch "FIRST_NAME" from worker table in upper case.
+SELECT upper(first_name) FROM Worker; 
 
 -- Q-3. Write an SQL query to fetch unique values of DEPARTMENT from worker table.
+select distinct department from Worker;
 
 -- Q-4. Write an SQL query to print the first three characters of FIRST_NAME from the worker table.
+select substring(first_name, 1, 3) from Worker;
 
 -- Q-5. Write an SQL query to find the position of the alphabet ('b') in the first name column 'Amitabh' from Worker table.
+select INSTR(first_name, 'b') from Worker where first_name = 'Amitabh';
 
 -- Q-6. Write an SQL query to print the FIRST_NAME from the Worker table after removing white spaces from the right side.
+select RTRIM(first_name) from Worker;
 
 -- Q-7. Write an SQL Query to print the DEPARTMENT from the Worker table after removing the white spaces from the left side.
+select LTRIM(first_name) from Worker;
 
 -- Q-8. Write an SQL query that fetches the unique values of DEPARTMENT from Worker table and prints its length.
+select DISTINCT department, LENGTH(department) from Worker;
 
 -- Q-9. Write an SQL query to print the FIRST_NAME from Worker table after replacing 'a' with 'A'.
+select REPLACE(first_name, 'a', 'A') from Worker;
 
 -- Q-10. Write an SQL query to print the FIRST_NAME and LAST_NAME from Worker table into a single column COMPLETE_NAME.
 -- A space char should separate them.
 
+select concat(first_name, ' ', last_name) as COMPLETE_NAME from Worker;
+
 -- Q-11. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+select * from Worker order by first_name asc;
 
 -- Q-12. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending and DEPARTMENT Desceding. 
+select * from Worker order by first_name, department desc;
 
 -- Q-13. Write an SQL query to print details for Workers with the first name as "Vipul" and "Satish" from Worker table.
+select * from Worker where first_name in ("Vipul", "Satish");
 
 -- Q-14. Write an SQL query to print details of Workers excluding first names, "Vipul" and "Satish" from Worker table.
+select * from Worker where first_name not in ('vipul', "Satish");
 
--- Q-15. Write an SQL query to print details od Workers with DEPARTMENT name as "Admin*".
+-- Q-15. Write an SQL query to print details of Workers with DEPARTMENT name as "Admin*".
+select * from Worker where department like "Admin%";
 
 -- Q-16. Write an SQL query to print details of the workers whose FIRST_NAME contains 'a'.
+select * from Worker where first_name like "%a%";
 
 -- Q-17. Write an SQL query to print details of the workers whose FISRT_NAME ends with 'a'.
+select * from Worker where first_name like "%a"; 
 
 -- Q-18. Write an SQL query to print details of the workers whose FIRST_NAME ends with 'h' and contains six alphabets.
+select * from Worker where first_name like "_____h";
 
 -- Q-19. Write an SQL query to print details of the workers whose SALARY lies between 100000 and 500000.
+select * from Worker where salary between 100000 and 500000;
 
 -- Q-20. Write an SQL query to print details of the workers who have joined in Feb'2014.
+select * from Worker where year(joining_date) = 2014 and month(joining_date) = 2;
 
 -- Q-21. Write an SQL query to fetch the count of employee working in the department 'Admin'.
+select department, count(*) from Worker where department = 'Admin';
 
 -- Q-22. Write an SQL query to fetch worker full names with salaries >= 50000 and <= 100000.
+select concat(first_name, " ",  last_name) as Full_Name from Worker where salary between 50000 and 100000;
 
 -- Q-23. Write an SQL query to fetch the no. of workers for each department in the descending order.
+select department, count(worker_id) as no_of_workers from Worker group by department order by department desc;
 
 -- Q-24. Write an SQL query to print details of the workers who are also Managers.
+
 
 -- Q-25. Write an SQL query to fetch number (more than 1) of different titles in the ORG.
 
